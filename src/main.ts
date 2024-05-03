@@ -9,11 +9,16 @@ async function bootstrap() {
 
   app.useGlobalPipes(    
     new ValidationPipe({     
-    whitelist: true, 
+      whitelist: true, 
       forbidNonWhitelisted: true, 
+      transform: true,
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
     }) 
   );
 
-  await app.listen(3000);
+  await app.listen(process.env.PORT);
+  console.log(`Server is running inm port ${process.env.PORT}`);
 }
 bootstrap();
